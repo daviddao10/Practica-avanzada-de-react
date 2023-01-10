@@ -1,15 +1,31 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import {legacy_createStore as createStore} from 'redux'
+import { createBrowserRouter } from 'react-router-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import Root from './routes/index/Root';
+import { producstReducer } from './redux/reducers/Products';
+
+
+const router = createBrowserRouter([
+  {
+    path: '*',
+    element: <App />,
+  },
+]);
+
+const store = createStore(producstReducer)
+
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <App />
+    <Root store={store} router={router}/>
+  
   </React.StrictMode>
 );
 

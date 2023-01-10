@@ -1,26 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { connect } from "react-redux";
+import "./App.css";
+//views
+import { setProducts } from "./redux/action";
+import Home from "./routes/home";
 
-function App() {
+function App({product, setProducts}:{product:any; setProducts:any;}) {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      hola putos
+      <Home />
     </div>
   );
 }
+const mapStateToProps = (state: any) => ({
+  products: state.products,
+});
 
-export default App;
+const mapDispacthToProps = (dispatch:any) => ({
+  setProducst: (pro: object) => dispatch(setProducts(pro)),
+});
+//export default App;
+export default connect(mapStateToProps,mapDispacthToProps)(App);
