@@ -1,27 +1,41 @@
+// library
 import { useEffect, useState } from "react";
-import { Col } from "antd";
+import { Col, Spin } from "antd";
+import { useDispatch, useSelector } from "react-redux";
 // components
 import Searcher from "../../components/common/Searcher";
 import ListProducts from "../../views/Products/ListProcust";
 import { getLatestProducts } from "../../api/service/setProducts";
 import { relogin } from "../../api/service/accessibility";
+import { setLoading, setProducts } from "../../redux/action";
+
+// types
+import { TypeProducts } from "../../Types/Products";
+
+//css
 import "./index.css";
 
-const Home = ({product, setProducts}:{product:any; setProducts:any;}) => {
-  
+//{products, setProducst}:{products:any; setProducst:any;}
+
+const Home = () => {
+  const products = useSelector((state: any) => state.products);
+  const loading = useSelector((state: any) => state.loading);
+  const dispatch = useDispatch();
+
   useEffect(() => {
     const fetchGetProducts = async () => {
-      
       try {
-        relogin()
+        dispatch(setLoading(true));
+       // relogin();
         const getproducts = await getLatestProducts();
-      setProducts(getproducts);
-      console.log(getproducts)
-        
+        dispatch(setProducts(getproducts));
+        dispatch(setLoading(false));
       } catch (error) {
-        console.log(error)
+        console.log(
+          "🚀 ~ file: index.tsx:40 ~ fetchGetProducts ~ error",
+          error
+        );
       }
-      
     };
     fetchGetProducts();
   }, []);
@@ -31,7 +45,14 @@ const Home = ({product, setProducts}:{product:any; setProducts:any;}) => {
       <Col span={8} offset={8} className="Searcher">
         <Searcher />
       </Col>
-      <ListProducts product={product} />
+      
+        {loading ? (
+          <Col offset={0}>
+          <Spin spinning size="large" />
+          </Col>
+        ) : (
+          <ListProducts product={products} />
+        )}
     </div>
   );
 };

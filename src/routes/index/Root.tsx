@@ -5,7 +5,7 @@ export default function Root({
   store,
   router,
 }: {
-  store?: any;
+  store: any;
   router: any;
 }): JSX.Element {
   return (
