@@ -8,7 +8,7 @@ import { useDispatch } from "react-redux";
 import { TypeLogin } from "../../Types/Login";
 // css
 import "./Login.css";
-import { setRemember } from "../../redux/action/action";
+import { setAutho } from "../../redux/action/action";
 import { login } from "../../api/service/accessibility";
 
 const Login: React.FC = () => {
@@ -23,9 +23,13 @@ const Login: React.FC = () => {
         password: values.password,
       };
       const loggin = await login(credenciales, values.remember);
-      dispatch(setRemember(values.remember));
+
+      
+      dispatch(setAutho({remember:values.remember,token:loggin}));
+
       const to = location.state?.from?.pathname || "/home";
       navigate(to, { replace: true });
+
     } catch (error) {}
   };
 

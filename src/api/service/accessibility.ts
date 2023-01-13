@@ -23,7 +23,7 @@ export const login = (credentials: TypeLogin, remember: boolean|undefined) => {
       if(!remember){
         storage.remove("auth");
       }
-      
+      return {accessToken:accessToken.accessToken}
     });
      
 };
@@ -37,8 +37,6 @@ export const logout = () => {
 
 export const relogin = () => {
   const accessToken = storage.get("auth");
-  console.log("🚀 ~ file: accessibility.ts:29 ~ relogin ~ accessToken", !!accessToken)
-
   
 
   setAuthorizationHeader(accessToken.accessToken);

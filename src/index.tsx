@@ -15,8 +15,13 @@ import "./index.css";
 
 
 
-const accessToken = storage.get('auth')
-setAuthorizationHeader(accessToken)
+const accessToken = storage.get('auth')|| ''
+
+if (!!accessToken) {
+  setAuthorizationHeader(accessToken.accessToken)
+
+}
+
 
 
 const router = createBrowserRouter([
@@ -26,7 +31,8 @@ const router = createBrowserRouter([
   },
 ]);
 
-const store = configureStore({ auth: !!accessToken },{router})
+const store = configureStore({ auth: !!accessToken,token:accessToken.accessToken },{router})
+
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement

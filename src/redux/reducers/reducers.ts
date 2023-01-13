@@ -1,11 +1,20 @@
 import { DELETE_PRODUCTS, LOGIN, REMEMBER, SET_LOADING, SET_PRODUCTS } from "../action/tipos";
 import { deleteProducts } from "../../api/service/setProducts";
-const initialState = {
+import Product from "../../views/Products/CardProducts";
+import { TypeProducts } from "../../Types/Products";
+
+const initialState:{
+  products: Array<TypeProducts>;
+  loadingProducts: boolean;
+  auth:boolean;
+  token:string;
+} = {
   products: [],
   loadingProducts: true,
   auth:false,
+  token:''
 
-};
+}
 
 export const Reducer = (state = initialState, action: any) => {
   switch (action.type) {
@@ -16,11 +25,16 @@ export const Reducer = (state = initialState, action: any) => {
       return { ...state, loadingProducts: action.payload };
 
     case DELETE_PRODUCTS:
-      return state;
+      
+
+      const newProducts = state.products.filter((product)=>{
+        return !(product.id ===action.payload)
+      })
+      return {...state,products:newProducts }
 
     case LOGIN:
-      //console.log("🚀 ~ file: Products.ts:25 ~ producstReducer ~  { ...state, remember: action.payload.remember}",  { ...state, auth: action.payload})
-      return  { ...state, auth: action.payload};
+      
+      return  { ...state, auth: action.payload.remember,token:action.payload.token.accessToken };
       
 
     default:

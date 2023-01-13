@@ -1,10 +1,11 @@
 
 import { setAuthorizationHeader } from "../../api/api";
+import { deleteProducts } from "../../api/service/setProducts";
 import { DELETE_PRODUCTS, REMEMBER, SET_LOADING, SET_PRODUCTS,LOGIN } from "./tipos";
 
 
 export const setProducts = (payload: object) => {
-  //console.log("🚀 ~ file: index.ts:5 ~ setProducts ~ payload", payload);
+ 
 
   return {
     type: SET_PRODUCTS,
@@ -12,6 +13,9 @@ export const setProducts = (payload: object) => {
   };
 };
 export const setDeletedProducts = (payload: string) => {
+  
+  deleteProducts(payload)
+
   return {
     type: DELETE_PRODUCTS,
     payload,
@@ -22,12 +26,13 @@ export const setLoading = (payload: boolean) => ({
   payload,
 });
 
-export const setRemember =  (payload: any) => {
+export const setAutho =  (payload: any) => {
+
   
   return { type: LOGIN, payload };
 };
 
-export const setLogging =(payload:any)=>{
+export const setRELogging =(payload:any)=>{
 
  setAuthorizationHeader(payload)
  
