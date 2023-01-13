@@ -8,7 +8,7 @@ import { useDispatch } from "react-redux";
 import { TypeLogin } from "../../Types/Login";
 // css
 import "./Login.css";
-import { setRemember } from "../../redux/action";
+import { setRemember } from "../../redux/action/action";
 import { login } from "../../api/service/accessibility";
 
 const Login: React.FC = () => {

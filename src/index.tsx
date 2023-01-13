@@ -5,10 +5,19 @@ import { createBrowserRouter } from "react-router-dom";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import Root from "./routes/index/Root";
+import storage from "./utils/storage";
+import { setAuthorizationHeader } from "./api/api";
 
-import { store } from "./redux";
+import configureStore  from "./redux/redux";
 // css
 import "./index.css";
+
+
+
+
+const accessToken = storage.get('auth')
+setAuthorizationHeader(accessToken)
+
 
 const router = createBrowserRouter([
   {
@@ -16,6 +25,8 @@ const router = createBrowserRouter([
     element: <App />,
   },
 ]);
+
+const store = configureStore({ auth: !!accessToken },{router})
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement

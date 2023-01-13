@@ -7,7 +7,7 @@ export default function Root({
 }: {
   store: any;
   router: any;
-}): JSX.Element {
+}) {
   return (
     <Provider store={store}>
       <RouterProvider router={router} />

@@ -24,7 +24,7 @@ export const setLoading = (payload: boolean) => ({
 
 export const setRemember =  (payload: any) => {
   
-  return { type: REMEMBER, payload };
+  return { type: LOGIN, payload };
 };
 
 export const setLogging =(payload:any)=>{

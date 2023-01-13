@@ -21,7 +21,7 @@ export const login = (credentials: TypeLogin, remember: boolean|undefined) => {
       }
       
       if(!remember){
-        logout()
+        storage.remove("auth");
       }
       
     });

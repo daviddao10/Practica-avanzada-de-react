@@ -7,7 +7,7 @@ import Searcher from "../../components/common/Searcher";
 import ListProducts from "../../views/Products/ListProcust";
 import { getLatestProducts } from "../../api/service/setProducts";
 import { relogin } from "../../api/service/accessibility";
-import { setLoading, setProducts } from "../../redux/action";
+import { setLoading, setProducts } from "../../redux/action/action";
 
 // types
 import { TypeProducts } from "../../Types/Products";
@@ -18,15 +18,17 @@ import "./index.css";
 //{products, setProducst}:{products:any; setProducst:any;}
 
 const Home = () => {
-  const products = useSelector((state: any) => state.products);
-  const loading = useSelector((state: any) => state.loading);
+
+  const products = useSelector((state: any) => state.Reducer.products);
+  const loading = useSelector((state: any) => state.Reducer.loadingProducts);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
     const fetchGetProducts = async () => {
       try {
         dispatch(setLoading(true));
-       // relogin();
+        // relogin();
         const getproducts = await getLatestProducts();
         dispatch(setProducts(getproducts));
         dispatch(setLoading(false));
@@ -45,14 +47,14 @@ const Home = () => {
       <Col span={8} offset={8} className="Searcher">
         <Searcher />
       </Col>
-      
-        {loading ? (
-          <Col offset={0}>
+
+      {loading ? (
+        <Col offset={0}>
           <Spin spinning size="large" />
-          </Col>
-        ) : (
-          <ListProducts product={products} />
-        )}
+        </Col>
+      ) : (
+        <ListProducts product={products} />
+      )}
     </div>
   );
 };
