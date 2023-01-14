@@ -25,7 +25,7 @@ const Login: React.FC = () => {
       const loggin = await login(credenciales, values.remember);
 
       
-      dispatch(setAutho({remember:values.remember,token:loggin}));
+      dispatch(setAutho({remember:true,token:loggin}));
 
       const to = location.state?.from?.pathname || "/home";
       navigate(to, { replace: true });

@@ -6,11 +6,10 @@ import { useDispatch, useSelector } from "react-redux";
 import Searcher from "../../components/common/Searcher";
 import ListProducts from "../../views/Products/ListProcust";
 import { getLatestProducts } from "../../api/service/setProducts";
-import { relogin } from "../../api/service/accessibility";
+
 import { setLoading, setProducts } from "../../redux/action/action";
 
-// types
-import { TypeProducts } from "../../Types/Products";
+
 
 //css
 import "./index.css";

@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import { createBrowserRouter } from "react-router-dom";
 // components
 import App from "./App";
+
 import reportWebVitals from "./reportWebVitals";
 import Root from "./routes/index/Root";
 import storage from "./utils/storage";
@@ -31,7 +32,7 @@ const router = createBrowserRouter([
   },
 ]);
 
-const store = configureStore({ auth: !!accessToken,token:accessToken.accessToken },{router})
+const store = configureStore({ },{router})
 
 
 const root = ReactDOM.createRoot(

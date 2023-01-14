@@ -48,6 +48,7 @@ export const Reducer = (state = initialState, action: any) => {
 
 
     case LOGIN:
+      
       return {
         ...state,
         auth: action.payload.remember,
