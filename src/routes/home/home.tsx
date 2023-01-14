@@ -18,9 +18,13 @@ import "./index.css";
 //{products, setProducst}:{products:any; setProducst:any;}
 
 const Home = () => {
-
-  const products = useSelector((state: any) => state.Reducer.products);
+  let products = useSelector((state: any) => state.Reducer.products);
   const loading = useSelector((state: any) => state.Reducer.loadingProducts);
+  const stautsSearch = useSelector((state: any) => state.Reducer.stautsSearch);
+  
+  const searchProducts = useSelector((state: any) => state.Reducer.Search);
+
+  
 
   const dispatch = useDispatch();
 
@@ -44,15 +48,15 @@ const Home = () => {
 
   return (
     <div>
-      <Col span={8} offset={8} className="Searcher">
+      <Col span={9} offset={9} className="Searcher">
         <Searcher />
       </Col>
 
       {loading ? (
-        <Col offset={0}>
+        <Col offset={12} span={3}>
           <Spin spinning size="large" />
         </Col>
-      ) : (
+      ) : ( stautsSearch ?<ListProducts product={searchProducts} />:
         <ListProducts product={products} />
       )}
     </div>

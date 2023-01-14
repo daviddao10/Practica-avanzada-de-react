@@ -4,8 +4,10 @@ export const SET_PRODUCTS = "SET_PRODUCTS";
 //carga de productos
 export const SET_LOADING = "SET_LOADING";
 
-// Delete products
+//Search
+export const SET_SEARCH='SET_SEARCH'
 
+// Delete products
 export const DELETE_PRODUCTS = "DELETE_PRODUCTS";
 
 

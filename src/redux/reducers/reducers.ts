@@ -1,20 +1,28 @@
-import { DELETE_PRODUCTS, LOGIN, REMEMBER, SET_LOADING, SET_PRODUCTS } from "../action/tipos";
-import { deleteProducts } from "../../api/service/setProducts";
-import Product from "../../views/Products/CardProducts";
+import {
+  DELETE_PRODUCTS,
+  LOGIN,
+  SET_LOADING,
+  SET_PRODUCTS,
+  SET_SEARCH,
+} from "../action/tipos";
+
 import { TypeProducts } from "../../Types/Products";
 
-const initialState:{
+const initialState: {
   products: Array<TypeProducts>;
   loadingProducts: boolean;
-  auth:boolean;
-  token:string;
+  stautsSearch: boolean;
+  Search: Array<TypeProducts>;
+  auth: boolean;
+  token: string;
 } = {
   products: [],
   loadingProducts: true,
-  auth:false,
-  token:''
-
-}
+  stautsSearch: false,
+  Search: [],
+  auth: false,
+  token: "",
+};
 
 export const Reducer = (state = initialState, action: any) => {
   switch (action.type) {
@@ -25,17 +33,42 @@ export const Reducer = (state = initialState, action: any) => {
       return { ...state, loadingProducts: action.payload };
 
     case DELETE_PRODUCTS:
-      
+      const newProducts = state.products.filter((product) => {
+        return !(product.id === action.payload);
+      });
 
-      const newProducts = state.products.filter((product)=>{
-        return !(product.id ===action.payload)
-      })
-      return {...state,products:newProducts }
+      const productosSearch = state.Search.filter((product) => {
+        return !(product.id === action.payload);
+      });
+
+
+      return { ...state, products: newProducts,Search:productosSearch };
+
+
+
 
     case LOGIN:
-      
-      return  { ...state, auth: action.payload.remember,token:action.payload.token.accessToken };
-      
+      return {
+        ...state,
+        auth: action.payload.remember,
+        token: action.payload.token.accessToken,
+      };
+
+    case SET_SEARCH:
+
+      if (!!action.payload) {
+        const search = state.products.filter((product) => {
+          return product.name === action.payload;
+        });
+
+        return { ...state, Search: search ,stautsSearch:true};
+      }
+      if (!action.payload){
+
+        return {...state, stautsSearch:false}
+
+      }
+      return state;
 
     default:
       return state;
