@@ -9,6 +9,9 @@ import { getLatestProducts } from "../../api/service/setProducts";
 
 import { setLoading, setProducts } from "../../redux/action/action";
 
+// type
+import { TypeProducts } from "../../Types/Products";
+
 
 
 //css
@@ -47,6 +50,9 @@ const Home = () => {
 
   return (
     <div>
+      <Col span={10} offset={10} className="Searcher">
+        <h1>Productos</h1>
+      </Col>
       <Col span={9} offset={9} className="Searcher">
         <Searcher />
       </Col>

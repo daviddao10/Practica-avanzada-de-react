@@ -30,7 +30,9 @@ const Login: React.FC = () => {
       const to = location.state?.from?.pathname || "/home";
       navigate(to, { replace: true });
 
-    } catch (error) {}
+    } catch (error) {
+      
+    }
   };
 
   const onFinishFailed = (errorInfo: any) => {

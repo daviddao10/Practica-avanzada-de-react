@@ -22,7 +22,7 @@ const Searcher = () => {
   <Space direction="vertical">
     
     <Search
-      placeholder="input search text"
+      placeholder="buscar por una etiqueta"
       allowClear
       enterButton="Search"
       size="large"

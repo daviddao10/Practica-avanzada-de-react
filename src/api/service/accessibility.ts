@@ -17,7 +17,7 @@ export const login = (credentials: TypeLogin, remember: boolean|undefined) => {
       
       
       if (remember) {
-        storage.set("auth", accessToken);
+        storage.set("auth", accessToken.accessToken);
       }
       
       if(!remember){
@@ -27,6 +27,7 @@ export const login = (credentials: TypeLogin, remember: boolean|undefined) => {
     });
      
 };
+    
 
 export const logout = () => {
   return Promise.resolve().then(() => {

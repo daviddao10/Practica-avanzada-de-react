@@ -2,7 +2,6 @@ import { setAuthorizationHeader } from "../../api/api";
 import { deleteProducts } from "../../api/service/setProducts";
 import {
   DELETE_PRODUCTS,
-  REMEMBER,
   SET_LOADING,
   SET_PRODUCTS,
   LOGIN,

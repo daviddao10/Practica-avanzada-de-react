@@ -7,7 +7,7 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
 
 // components
-import { loggers } from "./middlewares";
+
 import * as reducers from "./reducers/reducers";
 
 import * as auth from '../api/service/accessibility';
@@ -38,11 +38,11 @@ const historyEnhancer:any =
   };
 
   const logger = (store:any) => (next:any) => (action:any) => {
-    console.group(action.type);
-    console.info("dispatching", action, store.getState());
+    //console.group(action.type);
+    //console.info("dispatching", action, store.getState());
     const result = next(action);
-    console.log("next state", store.getState());
-    console.groupEnd();
+    //console.log("next state", store.getState());
+   // console.groupEnd();
     return result;
   };
   

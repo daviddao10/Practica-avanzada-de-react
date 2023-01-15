@@ -56,14 +56,19 @@ export const Reducer = (state = initialState, action: any) => {
       };
 
     case SET_SEARCH:
-
+     
       if (!!action.payload) {
+        
         const search = state.products.filter((product) => {
-          return product.name === action.payload;
+          console.log("🚀 ~ file: reducers.ts:65 ~ search ~ product.name", product.tags)
+          return (product.tags[0] === action.payload ||product.tags[1] === action.payload ||product.tags[2] === action.payload||product.tags[3] === action.payload);
+          
         });
 
         return { ...state, Search: search ,stautsSearch:true};
       }
+      
+
       if (!action.payload){
 
         return {...state, stautsSearch:false}
