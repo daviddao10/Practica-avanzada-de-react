@@ -7,6 +7,8 @@ import { TypeProducts } from "../../Types/Products";
 import DeletedButtom from "../../components/common/DeletedButton";
 import { useDispatch } from "react-redux";
 import { setDeletedProducts } from "../../redux/action/action";
+
+import placeholder from "../../components/images/placeholder.png"
 const { Meta } = Card;
 
 const IdCard = ({
@@ -32,7 +34,7 @@ const IdCard = ({
       hoverable
       title={name}
       style={{ width: 240 }}
-      cover={<img alt="example" src={photo} />}
+      cover={<img alt="example" src={photo  || placeholder} />}
       extra={<DeletedButtom onClick={handleOnDeleted} />}
     >
       {createdAt}
