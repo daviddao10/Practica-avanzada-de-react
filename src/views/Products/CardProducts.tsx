@@ -15,8 +15,8 @@ const Product = ({ id, name, sale, price, tags, photo }: TypeProducts) => {
     dispatch(setDeletedProducts(id));
     
   };
-  const handleOnID = ()=>{
-    dispatch(idOfProducts(id))
+  const handleOnID = async ()=>{
+    dispatch( await idOfProducts(id))
   }
   return (
     <Card

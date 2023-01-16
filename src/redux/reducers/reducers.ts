@@ -7,6 +7,7 @@ import {
 } from "../action/tipos";
 
 import { TypeProducts } from "../../Types/Products";
+import { getLatestProducts } from "../../api/service/setProducts";
 
 const initialState: {
   products: Array<TypeProducts>;
@@ -26,7 +27,7 @@ const initialState: {
   id: undefined,
 };
 
-export const Reducer = (state = initialState, action: any) => {
+export const Reducer =  (state = initialState, action: any) => {
   switch (action.type) {
     case SET_PRODUCTS:
       return { ...state, products: action.payload };
@@ -77,12 +78,13 @@ export const Reducer = (state = initialState, action: any) => {
 
     case ID_PRODUCTS:
 
-      const idProducts = state.products.filter((product) => {
-        return (product.id === action.payload);
+  
+      const idProducts =action.payload.product.filter((product:any) => {
+        return (product.id === action.payload.id);
       });
       
 
-    return { ...state, id: idProducts[0] };
+    return { ...state, id: idProducts[0] ,products:action.payload.product};
 
     default:
       return state;

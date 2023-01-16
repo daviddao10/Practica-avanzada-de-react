@@ -12,6 +12,7 @@ import { setAuthorizationHeader } from "./api/api";
 import DetailProducst from "./routes/home/id/idProducst";
 
 import RequireAuth from "./components/common/RequiereAuth";
+import NewProduct from "./routes/newProdcut/newProduct";
 
 const accessToken = storage.get("auth") || "";
 
@@ -34,7 +35,7 @@ function App() {
         <Route path="/home"  >
           <Route  index element={<RequireAuth><Home /></RequireAuth>}/> 
           <Route path=":Id" element={<RequireAuth><DetailProducst /></RequireAuth>} />
-          <Route path="newAdverts" element={<RequireAuth><Home /></RequireAuth>} />
+          <Route path="newAdverts" element={<RequireAuth><NewProduct /></RequireAuth>} />
         </Route>
         <Route path="/" element={<Navigate to={"/login"} />} />
       </Routes>
