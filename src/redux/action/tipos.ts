@@ -9,6 +9,8 @@ export const SET_SEARCH='SET_SEARCH'
 
 // Delete products
 export const DELETE_PRODUCTS = "DELETE_PRODUCTS";
+//
+export const ID_PRODUCTS="ID_PRODUCTS"
 
 
 // almacen de login 

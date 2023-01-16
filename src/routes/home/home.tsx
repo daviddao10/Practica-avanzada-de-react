@@ -16,6 +16,8 @@ import { TypeProducts } from "../../Types/Products";
 
 //css
 import "./index.css";
+import Header from "../../components/common/Header";
+
 
 //{products, setProducst}:{products:any; setProducst:any;}
 
@@ -51,7 +53,7 @@ const Home = () => {
   return (
     <div>
       <Col span={10} offset={10} className="Searcher">
-        <h1>Productos</h1>
+        <Header></Header>
       </Col>
       <Col span={9} offset={9} className="Searcher">
         <Searcher />

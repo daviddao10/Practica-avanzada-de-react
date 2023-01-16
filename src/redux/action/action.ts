@@ -6,6 +6,7 @@ import {
   SET_PRODUCTS,
   LOGIN,
   SET_SEARCH,
+  ID_PRODUCTS,
 } from "./tipos";
 
 export const setProducts = (payload: object) => {
@@ -45,3 +46,8 @@ export const setRELogging = (payload: any) => {
 
   return { type: LOGIN, payload };
 };
+
+
+export const idOfProducts =(payload:any)=>{
+  return { type: ID_PRODUCTS, payload };
+}

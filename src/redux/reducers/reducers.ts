@@ -3,7 +3,7 @@ import {
   LOGIN,
   SET_LOADING,
   SET_PRODUCTS,
-  SET_SEARCH,
+  SET_SEARCH,ID_PRODUCTS
 } from "../action/tipos";
 
 import { TypeProducts } from "../../Types/Products";
@@ -15,6 +15,7 @@ const initialState: {
   Search: Array<TypeProducts>;
   auth: boolean;
   token: string;
+  id: TypeProducts | undefined;
 } = {
   products: [],
   loadingProducts: true,
@@ -22,6 +23,7 @@ const initialState: {
   Search: [],
   auth: false,
   token: "",
+  id: undefined,
 };
 
 export const Reducer = (state = initialState, action: any) => {
@@ -41,14 +43,9 @@ export const Reducer = (state = initialState, action: any) => {
         return !(product.id === action.payload);
       });
 
-
-      return { ...state, products: newProducts,Search:productosSearch };
-
-
-
+      return { ...state, products: newProducts, Search: productosSearch };
 
     case LOGIN:
-      
       return {
         ...state,
         auth: action.payload.remember,
@@ -56,25 +53,36 @@ export const Reducer = (state = initialState, action: any) => {
       };
 
     case SET_SEARCH:
-     
       if (!!action.payload) {
-        
         const search = state.products.filter((product) => {
-          console.log("🚀 ~ file: reducers.ts:65 ~ search ~ product.name", product.tags)
-          return (product.tags[0] === action.payload ||product.tags[1] === action.payload ||product.tags[2] === action.payload||product.tags[3] === action.payload);
-          
+          console.log(
+            "🚀 ~ file: reducers.ts:65 ~ search ~ product.name",
+            product.tags
+          );
+          return (
+            product.tags[0] === action.payload ||
+            product.tags[1] === action.payload ||
+            product.tags[2] === action.payload ||
+            product.tags[3] === action.payload
+          );
         });
 
-        return { ...state, Search: search ,stautsSearch:true};
+        return { ...state, Search: search, stautsSearch: true };
       }
-      
 
-      if (!action.payload){
-
-        return {...state, stautsSearch:false}
-
+      if (!action.payload) {
+        return { ...state, stautsSearch: false };
       }
       return state;
+
+    case ID_PRODUCTS:
+
+      const idProducts = state.products.filter((product) => {
+        return (product.id === action.payload);
+      });
+      
+
+    return { ...state, id: idProducts[0] };
 
     default:
       return state;
